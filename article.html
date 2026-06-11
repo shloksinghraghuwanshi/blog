@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- SEO dynamically set by article-page.js -->
+  <title>NewsVibe – Article</title>
+  <meta name="description" content="Read the full story on NewsVibe." />
+  <meta name="robots" content="index, follow" />
+
+  <!-- Open Graph - dynamically updated by JS -->
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="NewsVibe" />
+
+  <!-- Schema.org NewsArticle - injected by JS -->
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="article.css" />
+</head>
+<body>
+
+  <!-- Reading Progress Bar -->
+  <div class="page-progress" id="pageProgress"></div>
+
+  <!-- Navbar -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <span class="logo-icon">⚡</span>
+        <span class="logo-text">NewsVibe</span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="category.html" class="nav-link">Topics</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+        <li><a href="about.html#contact" class="nav-link">Contact</a></li>
+      </ul>
+      <div class="nav-right">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+          <span class="toggle-sun">☀️</span>
+          <span class="toggle-moon">🌙</span>
+        </button>
+        <button class="hamburger" id="hamburger" aria-label="Open menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Article Page Layout -->
+  <div class="article-page-wrapper">
+
+    <!-- Main Article Column -->
+    <main class="article-main" id="articleMain" role="main">
+
+      <!-- Breadcrumb -->
+      <nav class="breadcrumb" aria-label="Breadcrumb" id="breadcrumb">
+        <a href="index.html">Home</a>
+        <span>›</span>
+        <a href="category.html" id="breadcrumbCat">Topics</a>
+        <span>›</span>
+        <span id="breadcrumbTitle" class="bc-current">Article</span>
+      </nav>
+
+      <!-- Article Header -->
+      <header class="article-header" id="articleHeader">
+        <div class="article-category-badge" id="articleCatBadge">Loading…</div>
+        <h1 class="article-h1" id="articleH1">Loading article…</h1>
+        <div class="article-byline" id="articleByline"></div>
+
+        <!-- Share Bar -->
+        <div class="article-share-bar" id="shareBar" aria-label="Share this article">
+          <span>Share:</span>
+          <button class="share-btn share-twitter" id="shareTwitter" aria-label="Share on Twitter">𝕏 Twitter</button>
+          <button class="share-btn share-facebook" id="shareFacebook" aria-label="Share on Facebook">Facebook</button>
+          <button class="share-btn share-whatsapp" id="shareWhatsapp" aria-label="Share on WhatsApp">WhatsApp</button>
+          <button class="share-btn share-copy" id="shareCopy" aria-label="Copy link">🔗 Copy Link</button>
+        </div>
+      </header>
+
+      <!-- Article Hero Image -->
+      <div class="article-hero-img" id="articleHeroImg" aria-label="Article illustration">
+        <div class="article-hero-inner" id="articleHeroInner"></div>
+      </div>
+
+      <!-- Ad (Article Top) -->
+      <div class="ad-article-top" aria-label="Advertisement">
+        <span class="ad-label">Advertisement</span>
+        <div class="ad-demo-content">
+          <span>📢 Your Ad Here</span>
+          <small>Advertise on NewsVibe — contact us for rates</small>
+        </div>
+      </div>
+
+      <!-- Article Body -->
+      <div class="article-content" id="articleContent">
+        <!-- dynamically injected -->
+      </div>
+
+      <!-- Tags -->
+      <div class="article-tags" id="articleTags" aria-label="Article tags"></div>
+
+      <!-- Like & Bookmark -->
+      <div class="article-engage" id="articleEngage">
+        <button class="engage-btn like-btn" id="likeBtn" aria-label="Like this article">
+          <span class="engage-icon">❤️</span>
+          <span class="engage-count" id="likeCount">0</span>
+          <span>Like</span>
+        </button>
+        <button class="engage-btn bookmark-btn" id="bookmarkBtn" aria-label="Bookmark this article">
+          <span class="engage-icon" id="bookmarkIcon">🔖</span>
+          <span>Bookmark</span>
+        </button>
+      </div>
+
+      <!-- Author Box -->
+      <div class="author-box" id="authorBox" aria-label="Author information">
+        <!-- dynamically injected -->
+      </div>
+
+      <!-- Ad (Article Bottom) -->
+      <div class="ad-article-bottom" aria-label="Advertisement">
+        <span class="ad-label">Advertisement</span>
+        <div class="ad-demo-content">
+          <span>📢 Advertisement</span>
+          <small>Google AdSense placement — replace with your ad code</small>
+        </div>
+      </div>
+
+      <!-- Comments Section -->
+      <section class="comments-section" id="commentsSection" aria-label="Reader comments">
+        <h2 class="comments-title">💬 Join the Conversation (<span id="commentCount">0</span>)</h2>
+
+        <!-- Comment Form -->
+        <form class="comment-form" id="commentForm" onsubmit="submitComment(event)" aria-label="Leave a comment">
+          <div class="comment-form-row">
+            <input type="text" id="commenterName" placeholder="Your name" required maxlength="50" aria-label="Your name" />
+            <input type="email" id="commenterEmail" placeholder="Email (not published)" aria-label="Your email" />
+          </div>
+          <textarea id="commentText" placeholder="Share your thoughts on this article…" required rows="4" maxlength="500" aria-label="Your comment"></textarea>
+          <button type="submit" class="btn btn-primary" id="commentSubmit">Post Comment</button>
+        </form>
+
+        <!-- Comments List -->
+        <div class="comments-list" id="commentsList" aria-live="polite">
+          <!-- Dynamically populated -->
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Sidebar -->
+    <aside class="article-sidebar" id="articleSidebar" aria-label="Sidebar">
+
+      <!-- Sidebar Ad (300×250) -->
+      <div class="ad-sidebar" aria-label="Advertisement">
+        <div class="ad-demo-content">
+          <span>📢 Sidebar Ad</span>
+          <small>300×250 — AdSense placement</small>
+        </div>
+      </div>
+
+      <!-- Related Articles -->
+      <div class="sidebar-widget" id="relatedWidget">
+        <h3 class="widget-title">Related Articles</h3>
+        <div class="related-list" id="relatedList">
+          <!-- dynamically populated -->
+        </div>
+      </div>
+
+      <!-- Newsletter Mini -->
+      <div class="sidebar-widget nl-mini">
+        <h3 class="widget-title">📬 Weekly Newsletter</h3>
+        <p>Get the best stories delivered to your inbox every week.</p>
+        <form onsubmit="sidebarSubscribe(event)" aria-label="Sidebar newsletter form">
+          <input type="email" placeholder="Your email" required aria-label="Email address" id="sidebarEmail" />
+          <button type="submit" class="btn btn-primary" id="sidebarSubmit">Subscribe</button>
+        </form>
+      </div>
+
+      <!-- Sidebar Ad (Sticky) -->
+      <div class="ad-sidebar" aria-label="Advertisement">
+        <div class="ad-demo-content">
+          <span>📢 Sidebar Ad</span>
+          <small>300×600 — Premium placement</small>
+        </div>
+      </div>
+
+    </aside>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer" aria-label="Site footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="index.html" class="nav-logo"><span class="logo-icon">⚡</span><span class="logo-text">NewsVibe</span></a>
+          <p>Curating the most important stories in health, tech, environment, finance, and beyond — every single week.</p>
+          <div class="social-links">
+            <a href="#" class="social-btn" aria-label="Twitter">𝕏</a>
+            <a href="#" class="social-btn" aria-label="Facebook">f</a>
+            <a href="#" class="social-btn" aria-label="Instagram">📸</a>
+          </div>
+        </div>
+        <div class="footer-links-group">
+          <h4>Navigate</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="category.html">Topics</a></li>
+            <li><a href="about.html">About</a></li>
+          </ul>
+        </div>
+        <div class="footer-links-group">
+          <h4>Topics</h4>
+          <ul>
+            <li><a href="category.html?cat=Health">Health</a></li>
+            <li><a href="category.html?cat=Technology">Technology</a></li>
+            <li><a href="category.html?cat=Finance">Finance</a></li>
+            <li><a href="category.html?cat=Environment">Environment</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 NewsVibe. Made with ❤️ for curious minds.</p>
+        <p class="footer-tagline">Read more, know more, be more.</p>
+      </div>
+    </div>
+  </footer>
+
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
+  <div class="toast" id="toast" role="alert" aria-live="assertive"></div>
+
+  <script src="articles-data.js"></script>
+  <script src="article-page.js"></script>
+</body>
+</html>

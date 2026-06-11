@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Browse Topics – NewsVibe</title>
+  <meta name="description" content="Browse all articles on NewsVibe by topic — Health, Technology, Finance, Environment, Education, and World Affairs." />
+  <meta name="robots" content="index, follow" />
+
+  <meta property="og:title" content="Browse Topics – NewsVibe" />
+  <meta property="og:description" content="Explore curated articles across Health, Tech, Finance, Environment, Education, and World Affairs." />
+  <meta property="og:type" content="website" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* Category Page Specific */
+    .category-page-hero {
+      background: var(--grad-hero);
+      padding: calc(var(--nav-height) + var(--sp-xl)) var(--sp-md) var(--sp-xl);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .category-page-hero::before {
+      content: '';
+      position: absolute;
+      width: 600px;
+      height: 300px;
+      background: radial-gradient(ellipse, rgba(108,99,255,0.3), transparent);
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      filter: blur(60px);
+    }
+
+    .category-page-hero h1 {
+      color: white;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      position: relative;
+      z-index: 1;
+    }
+
+    .category-page-hero p {
+      color: rgba(255,255,255,0.65);
+      font-size: 1.05rem;
+      position: relative;
+      z-index: 1;
+      margin-top: 0.75rem;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .category-page-body {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: var(--sp-xl) var(--sp-md);
+    }
+
+    .category-filter-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: var(--sp-sm);
+      margin-bottom: var(--sp-lg);
+    }
+
+    .cat-search-bar {
+      display: flex;
+      align-items: center;
+      background: var(--bg-card);
+      border: 1.5px solid var(--border);
+      border-radius: var(--r-full);
+      padding: 0.5rem 1rem;
+      gap: 0.5rem;
+      min-width: 250px;
+    }
+
+    .cat-search-bar:focus-within {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-glow);
+    }
+
+    .cat-search-bar input {
+      border: none;
+      background: transparent;
+      color: var(--text-primary);
+      font-size: 0.875rem;
+      width: 100%;
+      outline: none;
+    }
+
+    .results-count {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .cat-articles-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--sp-md);
+    }
+
+    @media (max-width: 1024px) { .cat-articles-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 600px) { .cat-articles-grid { grid-template-columns: 1fr; } }
+
+    .cat-pill-row {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="page-progress" id="pageProgress"></div>
+
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <span class="logo-icon">⚡</span>
+        <span class="logo-text">NewsVibe</span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="category.html" class="nav-link active">Topics</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+        <li><a href="about.html#contact" class="nav-link">Contact</a></li>
+      </ul>
+      <div class="nav-right">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+          <span class="toggle-sun">☀️</span>
+          <span class="toggle-moon">🌙</span>
+        </button>
+        <button class="hamburger" id="hamburger" aria-label="Open menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <div class="category-page-hero">
+    <h1 id="catPageTitle">Browse All Topics</h1>
+    <p id="catPageDesc">Discover curated articles across our core categories.</p>
+  </div>
+
+  <div class="category-page-body">
+
+    <!-- Filter Row -->
+    <div class="category-filter-row">
+      <div class="cat-pill-row" id="catPillRow" role="tablist">
+        <!-- dynamically populated -->
+      </div>
+      <div class="cat-search-bar">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <input type="text" id="catSearchInput" placeholder="Search within topic…" aria-label="Search articles" />
+      </div>
+      <span class="results-count" id="resultsCount">Showing all articles</span>
+    </div>
+
+    <!-- Articles Grid -->
+    <div class="cat-articles-grid" id="catArticlesGrid">
+      <!-- dynamically populated -->
+    </div>
+
+    <!-- No Results -->
+    <div class="no-results" id="noResults" style="display:none">
+      <span>🔍</span>
+      <p>No articles found. Try a different topic or search term.</p>
+      <button onclick="resetFilters()" class="btn btn-primary">Show All Articles</button>
+    </div>
+
+  </div>
+
+  <!-- Newsletter -->
+  <section class="newsletter-section">
+    <div class="container">
+      <div class="newsletter-card reveal">
+        <div class="nl-glow"></div>
+        <div class="nl-content">
+          <span class="section-tag">Stay Updated</span>
+          <h2>Get the Best Stories Weekly</h2>
+          <p>Join thousands of readers who trust NewsVibe for their weekly news digest.</p>
+          <form class="nl-form" onsubmit="handleSubscribe(event)">
+            <input type="email" id="nlEmail" placeholder="Your email address" required aria-label="Email address" />
+            <button type="submit" class="btn btn-primary">Subscribe Free →</button>
+          </form>
+          <p class="nl-note">✅ Free forever · No spam · Unsubscribe anytime</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="index.html" class="nav-logo"><span class="logo-icon">⚡</span><span class="logo-text">NewsVibe</span></a>
+          <p>Curating the most important stories every week.</p>
+        </div>
+        <div class="footer-links-group">
+          <h4>Topics</h4>
+          <ul>
+            <li><a href="category.html?cat=Health">Health</a></li>
+            <li><a href="category.html?cat=Technology">Technology</a></li>
+            <li><a href="category.html?cat=Finance">Finance</a></li>
+            <li><a href="category.html?cat=Environment">Environment</a></li>
+            <li><a href="category.html?cat=World">World</a></li>
+            <li><a href="category.html?cat=Education">Education</a></li>
+          </ul>
+        </div>
+        <div class="footer-links-group">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="about.html#contact">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 NewsVibe. Made with ❤️ for curious minds.</p>
+      </div>
+    </div>
+  </footer>
+
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
+  <div class="toast" id="toast" role="alert"></div>
+
+  <script src="articles-data.js"></script>
+  <script>
+    (function () {
+      "use strict";
+
+      // Theme
+      const savedTheme = localStorage.getItem("nv-theme") || "light";
+      document.documentElement.setAttribute("data-theme", savedTheme);
+      const themeToggle = document.getElementById("themeToggle");
+      if (themeToggle) {
+        themeToggle.addEventListener("click", () => {
+          const cur = document.documentElement.getAttribute("data-theme");
+          const next = cur === "dark" ? "light" : "dark";
+          document.documentElement.setAttribute("data-theme", next);
+          localStorage.setItem("nv-theme", next);
+        });
+      }
+
+      // Navbar
+      const navbar = document.getElementById("navbar");
+      const backToTop = document.getElementById("backToTop");
+      window.addEventListener("scroll", () => {
+        if (navbar) navbar.classList.toggle("scrolled", window.scrollY > 50);
+        if (backToTop) backToTop.classList.toggle("visible", window.scrollY > 500);
+      }, { passive: true });
+      if (backToTop) backToTop.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+
+      // Hamburger
+      const hamburger = document.getElementById("hamburger");
+      const navLinks = document.getElementById("navLinks");
+      if (hamburger && navLinks) {
+        hamburger.addEventListener("click", () => navLinks.classList.toggle("open"));
+      }
+
+      // Toast
+      const toast = document.getElementById("toast");
+      function showToast(msg) {
+        if (!toast) return;
+        toast.textContent = msg;
+        toast.classList.add("show");
+        setTimeout(() => toast.classList.remove("show"), 3000);
+      }
+
+      // URL Params
+      const params = new URLSearchParams(window.location.search);
+      let activeCategory = params.get("cat") || "All";
+      let searchQuery = params.get("search") || "";
+
+      const catPageTitle = document.getElementById("catPageTitle");
+      const catPageDesc = document.getElementById("catPageDesc");
+      const catSearchInput = document.getElementById("catSearchInput");
+      const resultsCount = document.getElementById("resultsCount");
+      const catArticlesGrid = document.getElementById("catArticlesGrid");
+      const noResults = document.getElementById("noResults");
+
+      if (activeCategory !== "All" && catPageTitle) {
+        catPageTitle.textContent = activeCategory + " Articles";
+        catPageDesc.textContent = `All our curated articles on ${activeCategory}.`;
+      }
+
+      if (searchQuery && catSearchInput) catSearchInput.value = searchQuery;
+
+      // Pills
+      const catPillRow = document.getElementById("catPillRow");
+      const ALL_CATS = ["All", ...new Set(ARTICLES.map(a => a.category))];
+
+      function buildPills() {
+        if (!catPillRow) return;
+        catPillRow.innerHTML = "";
+        ALL_CATS.forEach(cat => {
+          const btn = document.createElement("button");
+          btn.className = `filter-tab${cat === activeCategory ? " active" : ""}`;
+          btn.textContent = cat;
+          btn.addEventListener("click", () => {
+            activeCategory = cat;
+            buildPills();
+            renderGrid();
+            if (catPageTitle) catPageTitle.textContent = cat === "All" ? "Browse All Topics" : cat + " Articles";
+            if (catPageDesc) catPageDesc.textContent = cat === "All" ? "Discover curated articles across our core categories." : `All our curated articles on ${cat}.`;
+          });
+          catPillRow.appendChild(btn);
+        });
+      }
+
+      // Render Grid
+      function renderGrid() {
+        if (!catArticlesGrid) return;
+        const q = (catSearchInput ? catSearchInput.value : "").toLowerCase().trim();
+
+        const filtered = ARTICLES.filter(a => {
+          const matchCat = activeCategory === "All" || a.category === activeCategory;
+          const matchQ = !q || a.title.toLowerCase().includes(q) || a.excerpt.toLowerCase().includes(q) || a.tags.some(t => t.includes(q));
+          return matchCat && matchQ;
+        });
+
+        if (resultsCount) resultsCount.textContent = `Showing ${filtered.length} article${filtered.length !== 1 ? "s" : ""}`;
+
+        catArticlesGrid.innerHTML = "";
+
+        if (filtered.length === 0) {
+          noResults.style.display = "flex";
+          return;
+        }
+
+        noResults.style.display = "none";
+
+        filtered.forEach(a => {
+          const card = document.createElement("article");
+          card.className = "article-card reveal";
+          card.innerHTML = `
+            <div class="article-img-wrap">
+              <div class="article-img" style="background:${a.gradient}">
+                <span style="font-size:2.5rem">${a.emoji}</span>
+              </div>
+              <span class="article-tag">${a.category}</span>
+              ${a.trending ? '<span class="trending-label">🔥 Trending</span>' : ""}
+            </div>
+            <div class="article-body">
+              <div class="article-meta"><span>${a.date}</span><span>•</span><span>${a.readTime}</span></div>
+              <h3 class="article-title">${a.title}</h3>
+              <p class="article-excerpt">${a.excerpt}</p>
+              <div class="article-footer">
+                <a href="article.html?slug=${a.slug}" class="read-more">Read Full Story →</a>
+                <span class="article-views">👁️ ${(a.views/1000).toFixed(1)}k</span>
+              </div>
+            </div>
+          `;
+          card.addEventListener("click", (e) => {
+            if (!e.target.closest("a")) window.location.href = `article.html?slug=${a.slug}`;
+          });
+          catArticlesGrid.appendChild(card);
+        });
+
+        // Re-observe reveals
+        document.querySelectorAll(".reveal:not(.visible)").forEach(el => revealObs.observe(el));
+      }
+
+      window.resetFilters = function () {
+        activeCategory = "All";
+        if (catSearchInput) catSearchInput.value = "";
+        buildPills();
+        renderGrid();
+      };
+
+      if (catSearchInput) {
+        catSearchInput.addEventListener("input", renderGrid);
+      }
+
+      // Reveal Observer
+      const revealObs = new IntersectionObserver((entries) => {
+        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add("visible"); revealObs.unobserve(e.target); } });
+      }, { threshold: 0.1 });
+
+      // Newsletter
+      window.handleSubscribe = function (e) {
+        e.preventDefault();
+        const el = document.getElementById("nlEmail");
+        if (el) el.value = "";
+        showToast("🎉 You're subscribed to NewsVibe!");
+      };
+
+      buildPills();
+      renderGrid();
+
+    })();
+  </script>
+</body>
+</html>

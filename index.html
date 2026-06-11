@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- ===== PRIMARY SEO META TAGS ===== -->
+  <title>NewsVibe – Your Daily Source for Health, Tech, Finance & World News</title>
+  <meta name="description" content="NewsVibe brings you curated, in-depth articles on health, technology, finance, environment, and world affairs. Stay informed, engaged, and ahead of the curve." />
+  <meta name="keywords" content="news blog, health news, technology news, finance tips, world affairs, mental health, AI 2026, investing, environment" />
+  <meta name="author" content="NewsVibe Editorial Team" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://newsvibe.com/" />
+
+  <!-- ===== OPEN GRAPH (Social Sharing) ===== -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="NewsVibe – Stories That Matter Most" />
+  <meta property="og:description" content="Curated news and deep insights on health, technology, finance, environment, and world affairs." />
+  <meta property="og:image" content="https://newsvibe.com/og-image.jpg" />
+  <meta property="og:url" content="https://newsvibe.com/" />
+  <meta property="og:site_name" content="NewsVibe" />
+
+  <!-- ===== TWITTER CARD ===== -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="NewsVibe – Stories That Matter Most" />
+  <meta name="twitter:description" content="Curated news and deep insights on health, technology, finance, environment, and world affairs." />
+  <meta name="twitter:image" content="https://newsvibe.com/og-image.jpg" />
+  <meta name="twitter:site" content="@newsvibe" />
+
+  <!-- ===== SCHEMA.ORG STRUCTURED DATA ===== -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "NewsMediaOrganization",
+    "name": "NewsVibe",
+    "url": "https://newsvibe.com",
+    "logo": "https://newsvibe.com/logo.png",
+    "sameAs": [
+      "https://twitter.com/newsvibe",
+      "https://facebook.com/newsvibe"
+    ],
+    "description": "NewsVibe brings curated news and insights on health, technology, finance, environment, and world affairs."
+  }
+  </script>
+
+  <!-- ===== FONTS ===== -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ===== PROGRESS BAR ===== -->
+  <div class="page-progress" id="pageProgress"></div>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <span class="logo-icon">⚡</span>
+        <span class="logo-text">NewsVibe</span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" class="nav-link active" id="nav-home">Home</a></li>
+        <li><a href="category.html" class="nav-link" id="nav-topics">Topics</a></li>
+        <li><a href="about.html" class="nav-link" id="nav-about">About</a></li>
+        <li><a href="about.html#contact" class="nav-link" id="nav-contact">Contact</a></li>
+      </ul>
+      <div class="nav-right">
+        <div class="search-bar" id="searchBar">
+          <input type="text" id="searchInput" placeholder="Search articles…" autocomplete="off" aria-label="Search articles" />
+          <button class="search-btn" id="searchBtn" aria-label="Search">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          </button>
+        </div>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+          <span class="toggle-sun">☀️</span>
+          <span class="toggle-moon">🌙</span>
+        </button>
+        <button class="hamburger" id="hamburger" aria-label="Open menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+    <div class="search-results" id="searchResults"></div>
+  </nav>
+
+  <!-- ===== AD BANNER (Header – 728x90) ===== -->
+  <div class="ad-banner ad-leaderboard" id="adLeaderboard" aria-label="Advertisement">
+    <span class="ad-label">Advertisement</span>
+    <div class="ad-placeholder">
+      <!-- Google AdSense: Replace with your ad code -->
+      <!-- <ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-XXXXXXXX" data-ad-slot="XXXXXXXX"></ins> -->
+      <div class="ad-demo-content">
+        <span>🎯 Your Ad Could Be Here</span>
+        <small>Advertise on NewsVibe — reach thousands of engaged readers daily</small>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== HERO SECTION ===== -->
+  <section class="hero" id="home" aria-label="Featured hero section">
+    <div class="hero-bg">
+      <div class="hero-orb orb-1"></div>
+      <div class="hero-orb orb-2"></div>
+      <div class="hero-orb orb-3"></div>
+    </div>
+    <div class="hero-content">
+      <div class="hero-badge reveal">📰 YOUR DAILY INSIGHT</div>
+      <h1 class="hero-title reveal">
+        Stories That
+        <span class="gradient-text"> Matter Most</span>
+      </h1>
+      <p class="hero-subtitle reveal">
+        Curated news and deep insights on health, technology, finance, environment, and world affairs — written with clarity, depth, and purpose.
+      </p>
+      <div class="hero-actions reveal">
+        <a href="#latest" class="btn btn-primary" id="hero-cta-read">
+          Read Latest
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="about.html" class="btn btn-ghost" id="hero-cta-about">About Us</a>
+      </div>
+      <div class="hero-stats reveal">
+        <div class="stat"><span class="stat-num" id="statArticles">0</span><span class="stat-label">Articles</span></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><span class="stat-num">6</span><span class="stat-label">Topics</span></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><span class="stat-num">Weekly</span><span class="stat-label">Updates</span></div>
+      </div>
+    </div>
+    <div class="scroll-indicator" aria-hidden="true">
+      <span>Scroll to explore</span>
+      <div class="scroll-arrow"></div>
+    </div>
+  </section>
+
+  <!-- ===== TICKER ===== -->
+  <div class="news-ticker" aria-label="Breaking news ticker">
+    <span class="ticker-label">🔴 TRENDING</span>
+    <div class="ticker-track" id="tickerTrack">
+      <span>Why Your Mental Health Is the Foundation of Everything</span>
+      <span>•</span>
+      <span>AI in 2026: Tools That Are Changing Daily Life</span>
+      <span>•</span>
+      <span>The Beginner's Guide to Financial Freedom in Your 20s</span>
+      <span>•</span>
+      <span>Remote Work in 2026: The New Rules No One Told You</span>
+      <span>•</span>
+      <span>India's Startup Boom: 10 Sectors About to Explode</span>
+      <span>•</span>
+      <span>The Sleep Science Every Adult Needs to Know in 2026</span>
+      <span>•</span>
+    </div>
+  </div>
+
+  <!-- ===== TRENDING SECTION ===== -->
+  <section class="trending-section" id="trending" aria-label="Trending articles">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">🔥 Hot Right Now</span>
+        <h2 class="section-title">Trending Stories</h2>
+        <p class="section-desc">The articles our readers can't stop sharing this week.</p>
+      </div>
+      <div class="trending-grid" id="trendingGrid">
+        <!-- Dynamically populated from articles-data.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CATEGORIES SECTION ===== -->
+  <section class="categories-section" id="categories" aria-label="Article categories">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">Explore Topics</span>
+        <h2 class="section-title">What We Cover</h2>
+        <p class="section-desc">Pick a topic and dive deep into what matters most to you.</p>
+      </div>
+      <div class="categories-grid" id="categoriesGrid">
+        <!-- Dynamically populated -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== AD RECTANGLE (Mid-Page) ===== -->
+  <div class="ad-banner ad-rectangle" aria-label="Advertisement">
+    <span class="ad-label">Sponsored</span>
+    <div class="ad-placeholder ad-mid">
+      <div class="ad-demo-content">
+        <span>📱 Advertise With NewsVibe</span>
+        <small>Premium placements, engaged readers, real results</small>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== LATEST ARTICLES SECTION ===== -->
+  <section class="latest-section" id="latest" aria-label="Latest articles">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">Fresh Off The Press</span>
+        <h2 class="section-title">Latest Articles</h2>
+        <p class="section-desc">Hand-picked stories on the topics that shape your everyday life.</p>
+      </div>
+
+      <!-- Category Filter Tabs -->
+      <div class="filter-tabs" id="filterTabs" role="tablist" aria-label="Filter articles by category">
+        <!-- Dynamically populated -->
+      </div>
+
+      <!-- Articles Grid -->
+      <div class="articles-grid" id="articlesGrid" role="main">
+        <!-- Dynamically populated -->
+      </div>
+
+      <!-- No Results -->
+      <div class="no-results" id="noResults" style="display:none" aria-live="polite">
+        <span>🔍</span>
+        <p>No articles found. Try a different search or topic.</p>
+        <button onclick="clearSearch()" class="btn btn-primary" id="clearSearchBtn">Clear Search</button>
+      </div>
+
+      <!-- Load More -->
+      <div class="load-more-wrap" id="loadMoreWrap">
+        <button class="btn btn-ghost load-more" id="loadMoreBtn">Load More Articles ↓</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== NEWSLETTER SECTION ===== -->
+  <section class="newsletter-section" aria-label="Newsletter signup">
+    <div class="container">
+      <div class="newsletter-card reveal">
+        <div class="nl-glow"></div>
+        <div class="nl-content">
+          <span class="section-tag">Stay Informed</span>
+          <h2>Never Miss a Story</h2>
+          <p>Join <strong id="subscriberCount">12,400+</strong> readers who get our best articles delivered every week. No spam, ever.</p>
+          <form class="nl-form" id="nlForm" onsubmit="handleSubscribe(event)" aria-label="Newsletter subscription form">
+            <input type="email" id="nlEmail" placeholder="Enter your email address" required aria-label="Email address" />
+            <button type="submit" class="btn btn-primary" id="nlSubmitBtn">Subscribe Free →</button>
+          </form>
+          <p class="nl-note">✅ Free forever · No spam · Unsubscribe anytime</p>
+          <div class="nl-benefits">
+            <span>📰 Weekly digest</span>
+            <span>🔥 Breaking stories</span>
+            <span>💡 Exclusive insights</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ABOUT SECTION ===== -->
+  <section class="about-section" id="about" aria-label="About NewsVibe">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">Who We Are</span>
+        <h2 class="section-title">More Than Just News</h2>
+        <p class="section-desc">We believe every person deserves access to meaningful information that improves their daily life.</p>
+      </div>
+      <div class="about-grid">
+        <div class="about-card reveal" style="--delay: 0s">
+          <div class="about-card-icon">🧠</div>
+          <h3>Deep Thinking</h3>
+          <p>We go beyond headlines to give you the context and analysis that helps you understand what's really happening.</p>
+        </div>
+        <div class="about-card reveal" style="--delay: 0.15s">
+          <div class="about-card-icon">❤️</div>
+          <h3>Human First</h3>
+          <p>Every story is about people. We write with empathy, clarity, and respect for the human experience behind every headline.</p>
+        </div>
+        <div class="about-card reveal" style="--delay: 0.3s">
+          <div class="about-card-icon">🌍</div>
+          <h3>Global Perspective</h3>
+          <p>From local communities to world events, we cover what matters across borders with balanced, fact-based reporting.</p>
+        </div>
+        <div class="about-card reveal" style="--delay: 0.45s">
+          <div class="about-card-icon">🔥</div>
+          <h3>Trending Fast</h3>
+          <p>Stay ahead with breaking stories and trending topics delivered fresh, without the noise and clickbait.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer" aria-label="Site footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="index.html" class="nav-logo"><span class="logo-icon">⚡</span><span class="logo-text">NewsVibe</span></a>
+          <p>Curating the most important stories in health, tech, environment, finance, and beyond — every single week.</p>
+          <div class="social-links">
+            <a href="#" class="social-btn" aria-label="Twitter/X" id="footer-twitter">𝕏</a>
+            <a href="#" class="social-btn" aria-label="Facebook" id="footer-facebook">f</a>
+            <a href="#" class="social-btn" aria-label="Instagram" id="footer-instagram">📸</a>
+            <a href="#" class="social-btn" aria-label="YouTube" id="footer-youtube">▶</a>
+          </div>
+        </div>
+        <div class="footer-links-group">
+          <h4>Navigate</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="category.html">Topics</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="about.html#contact">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-links-group">
+          <h4>Topics</h4>
+          <ul>
+            <li><a href="category.html?cat=Health">Health</a></li>
+            <li><a href="category.html?cat=Technology">Technology</a></li>
+            <li><a href="category.html?cat=Finance">Finance</a></li>
+            <li><a href="category.html?cat=Environment">Environment</a></li>
+            <li><a href="category.html?cat=World">World</a></li>
+            <li><a href="category.html?cat=Education">Education</a></li>
+          </ul>
+        </div>
+        <div class="footer-links-group">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+            <li><a href="#">Cookie Policy</a></li>
+            <li><a href="#">Advertise</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 NewsVibe. Made with ❤️ for curious minds.</p>
+        <p class="footer-tagline">Read more, know more, be more.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== BACK TO TOP ===== -->
+  <button class="back-to-top" id="backToTop" aria-label="Back to top" title="Back to top">↑</button>
+
+  <!-- ===== MOBILE STICKY AD ===== -->
+  <div class="ad-sticky-mobile" id="adStickyMobile" aria-label="Advertisement">
+    <button class="ad-close" id="adStickyClose" aria-label="Close ad">✕</button>
+    <div class="ad-demo-content">
+      <span>📢 Advertise Here</span>
+    </div>
+  </div>
+
+  <!-- ===== TOAST ===== -->
+  <div class="toast" id="toast" role="alert" aria-live="assertive"></div>
+
+  <script src="articles-data.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

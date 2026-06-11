@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Page Not Found – NewsVibe</title>
+  <meta name="description" content="Sorry, the page you were looking for doesn't exist on NewsVibe." />
+  <meta name="robots" content="noindex, nofollow" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+
+  <style>
+    .error-page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: var(--sp-xl) var(--sp-md);
+      background: var(--grad-hero);
+    }
+
+    .error-number {
+      font-size: clamp(6rem, 20vw, 14rem);
+      font-weight: 900;
+      font-family: var(--font-heading);
+      background: var(--grad-brand);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1;
+      margin-bottom: 1rem;
+      animation: pulse404 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse404 {
+      0%, 100% { filter: brightness(1); }
+      50% { filter: brightness(1.2); }
+    }
+
+    .error-emoji { font-size: 4rem; margin-bottom: 1rem; animation: bobScroll 2s ease-in-out infinite; }
+
+    @keyframes bobScroll {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+    }
+
+    .error-page h1 {
+      color: white;
+      font-size: clamp(1.5rem, 4vw, 2.5rem);
+      margin-bottom: 1rem;
+    }
+
+    .error-page p {
+      color: rgba(255,255,255,0.6);
+      font-size: 1.05rem;
+      max-width: 440px;
+      margin: 0 auto 2rem;
+      line-height: 1.8;
+    }
+
+    .error-actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .error-links {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 3rem;
+    }
+
+    .error-link {
+      padding: 0.5rem 1.25rem;
+      border-radius: var(--r-full);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: rgba(255,255,255,0.65);
+      font-size: 0.85rem;
+      font-weight: 500;
+      transition: all var(--t-fast);
+      backdrop-filter: blur(8px);
+    }
+
+    .error-link:hover {
+      border-color: rgba(255,255,255,0.5);
+      color: white;
+      background: rgba(255,255,255,0.08);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="error-page">
+    <div class="error-emoji">🗞️</div>
+    <div class="error-number">404</div>
+    <h1>Story Not Found</h1>
+    <p>The page you're looking for has either moved, been deleted, or never existed. But don't worry — there are plenty of great stories waiting for you.</p>
+
+    <div class="error-actions">
+      <a href="index.html" class="btn btn-primary" id="error-home-btn">← Back to Home</a>
+      <a href="category.html" class="btn btn-ghost" id="error-topics-btn">Browse Topics</a>
+    </div>
+
+    <div class="error-links">
+      <a href="category.html?cat=Health" class="error-link">🏥 Health</a>
+      <a href="category.html?cat=Technology" class="error-link">💻 Technology</a>
+      <a href="category.html?cat=Finance" class="error-link">💰 Finance</a>
+      <a href="category.html?cat=Environment" class="error-link">🌿 Environment</a>
+      <a href="category.html?cat=World" class="error-link">🌐 World</a>
+    </div>
+  </div>
+
+  <script>
+    const saved = localStorage.getItem("nv-theme") || "light";
+    document.documentElement.setAttribute("data-theme", saved);
+  </script>
+</body>
+</html>

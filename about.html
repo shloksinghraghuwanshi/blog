@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us – NewsVibe | Our Mission, Team & Contact</title>
+  <meta name="description" content="Learn about NewsVibe's mission to bring you meaningful, depth-driven news. Meet our team and get in touch with us." />
+  <meta name="robots" content="index, follow" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+
+  <style>
+    .about-page {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: calc(var(--nav-height) + var(--sp-xl)) var(--sp-md) var(--sp-xl);
+    }
+
+    .about-hero {
+      text-align: center;
+      padding: var(--sp-xl) 0;
+      background: var(--grad-hero);
+      margin-top: var(--nav-height);
+      padding: var(--sp-2xl) var(--sp-md);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at center top, rgba(108,99,255,0.3), transparent 60%);
+    }
+
+    .about-hero h1 { color: white; font-size: clamp(2.2rem, 5vw, 4rem); position: relative; z-index: 1; }
+    .about-hero p { color: rgba(255,255,255,0.65); font-size: 1.1rem; max-width: 550px; margin: 1rem auto 0; position: relative; z-index: 1; }
+
+    .about-section-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: var(--sp-xl) var(--sp-md);
+    }
+
+    .mission-text {
+      max-width: 720px;
+      margin: 0 auto;
+      text-align: center;
+      font-size: 1.15rem;
+      line-height: 1.9;
+      color: var(--text-secondary);
+    }
+
+    .mission-text strong { color: var(--accent); }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: var(--sp-md);
+      margin-top: var(--sp-lg);
+    }
+
+    .team-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      padding: var(--sp-lg) var(--sp-md);
+      text-align: center;
+      transition: all var(--t-mid);
+    }
+
+    .team-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--accent);
+    }
+
+    .team-avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: var(--grad-brand);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      margin: 0 auto var(--sp-sm);
+      box-shadow: 0 8px 24px rgba(108,99,255,0.3);
+    }
+
+    .team-card h3 { font-size: 1rem; margin-bottom: 4px; }
+    .team-card .team-role { font-size: 0.78rem; color: var(--accent); font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.5rem; }
+    .team-card p { font-size: 0.82rem; color: var(--text-secondary); line-height: 1.6; }
+
+    .stats-strip {
+      background: var(--grad-brand);
+      padding: var(--sp-xl) var(--sp-md);
+    }
+
+    .stats-strip-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      text-align: center;
+      gap: var(--sp-lg);
+    }
+
+    .strip-stat { color: white; }
+    .strip-stat .s-num { font-size: 2.5rem; font-weight: 900; font-family: var(--font-heading); display: block; }
+    .strip-stat .s-label { font-size: 0.85rem; opacity: 0.8; font-weight: 500; }
+
+    /* Contact */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--sp-xl);
+      align-items: flex-start;
+    }
+
+    .contact-info h3 { font-size: 1.3rem; margin-bottom: var(--sp-sm); }
+    .contact-info p { color: var(--text-secondary); margin-bottom: var(--sp-md); line-height: 1.8; }
+
+    .contact-detail {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem;
+      background: var(--surface);
+      border-radius: var(--r-md);
+      margin-bottom: 0.75rem;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+
+    .contact-detail span:first-child { font-size: 1.25rem; flex-shrink: 0; }
+    .contact-detail strong { color: var(--text-primary); }
+
+    .contact-form {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      padding: var(--sp-lg);
+      display: flex;
+      flex-direction: column;
+      gap: var(--sp-sm);
+      box-shadow: var(--shadow-md);
+    }
+
+    .contact-form h3 { font-size: 1.2rem; margin-bottom: 0.5rem; }
+
+    .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+    .form-group label { font-size: 0.8rem; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.06em; }
+
+    .contact-form input,
+    .contact-form select,
+    .contact-form textarea {
+      padding: 0.75rem 1rem;
+      border: 1.5px solid var(--border);
+      border-radius: var(--r-md);
+      background: var(--surface);
+      color: var(--text-primary);
+      font-size: 0.9rem;
+      font-family: var(--font-body);
+      outline: none;
+      transition: border-color var(--t-fast), box-shadow var(--t-fast);
+      resize: vertical;
+    }
+
+    .contact-form input:focus,
+    .contact-form select:focus,
+    .contact-form textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-glow);
+    }
+
+    @media (max-width: 768px) {
+      .contact-grid { grid-template-columns: 1fr; }
+      .stats-strip-inner { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 480px) {
+      .stats-strip-inner { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="page-progress" id="pageProgress"></div>
+
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <span class="logo-icon">⚡</span>
+        <span class="logo-text">NewsVibe</span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="category.html" class="nav-link">Topics</a></li>
+        <li><a href="about.html" class="nav-link active">About</a></li>
+        <li><a href="about.html#contact" class="nav-link">Contact</a></li>
+      </ul>
+      <div class="nav-right">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+          <span class="toggle-sun">☀️</span>
+          <span class="toggle-moon">🌙</span>
+        </button>
+        <button class="hamburger" id="hamburger" aria-label="Open menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <div class="about-hero">
+    <h1>About <span class="gradient-text">NewsVibe</span></h1>
+    <p>We're a passionate team of journalists, researchers, and storytellers committed to making the news meaningful again.</p>
+  </div>
+
+  <!-- Mission -->
+  <section class="about-section" style="padding: var(--sp-xl) 0;">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">Our Mission</span>
+        <h2 class="section-title">Why NewsVibe Exists</h2>
+      </div>
+      <p class="mission-text reveal">
+        In a world of <strong>clickbait headlines</strong> and <strong>algorithm-driven outrage</strong>, we believe readers deserve better.
+        NewsVibe was founded on the principle that great journalism should be <strong>deep, honest, and human</strong>.
+        <br><br>
+        We cover Health, Technology, Finance, Environment, Education, and World Affairs — not because they're trending,
+        but because they <strong>genuinely matter</strong> to the people reading them.
+        Every story we publish is researched with care, written with clarity, and designed to leave you <strong>more informed, not more anxious</strong>.
+      </p>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <div class="stats-strip">
+    <div class="stats-strip-inner">
+      <div class="strip-stat reveal">
+        <span class="s-num">12+</span>
+        <span class="s-label">Articles Published</span>
+      </div>
+      <div class="strip-stat reveal">
+        <span class="s-num">12.4k+</span>
+        <span class="s-label">Newsletter Readers</span>
+      </div>
+      <div class="strip-stat reveal">
+        <span class="s-num">6</span>
+        <span class="s-label">Topic Categories</span>
+      </div>
+      <div class="strip-stat reveal">
+        <span class="s-num">100%</span>
+        <span class="s-label">Independent & Unbiased</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Team -->
+  <section class="about-section" style="padding: var(--sp-xl) 0;">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">Meet the Team</span>
+        <h2 class="section-title">The People Behind the Stories</h2>
+        <p class="section-desc">A small, dedicated team with big passion for storytelling that matters.</p>
+      </div>
+      <div class="team-grid">
+        <div class="team-card reveal">
+          <div class="team-avatar">👩‍⚕️</div>
+          <h3>Dr. Priya Sharma</h3>
+          <div class="team-role">Health & Wellness Editor</div>
+          <p>Former clinical psychologist turned health journalist. 10+ years of experience translating complex medical research into actionable insights.</p>
+        </div>
+        <div class="team-card reveal">
+          <div class="team-avatar">👨‍💻</div>
+          <h3>Arjun Mehta</h3>
+          <div class="team-role">Technology Correspondent</div>
+          <p>Ex-software engineer turned tech journalist. Covers AI, cybersecurity, and the societal impact of emerging technologies with insider insight.</p>
+        </div>
+        <div class="team-card reveal">
+          <div class="team-avatar">💼</div>
+          <h3>Vikram Nair</h3>
+          <div class="team-role">Personal Finance Writer</div>
+          <p>MBA finance graduate and certified financial planner. Makes complex money concepts accessible to everyone from students to retirees.</p>
+        </div>
+        <div class="team-card reveal">
+          <div class="team-avatar">🌱</div>
+          <h3>Maya Reddy</h3>
+          <div class="team-role">Environment Reporter</div>
+          <p>Climate journalist who has reported from 14 countries. Believes informed citizens are the most powerful environmental force on earth.</p>
+        </div>
+        <div class="team-card reveal">
+          <div class="team-avatar">🌍</div>
+          <h3>Rahul Sinha</h3>
+          <div class="team-role">World Affairs Correspondent</div>
+          <p>Political science graduate and former NGO worker. Brings a humanist perspective to geopolitics that cuts through partisan noise.</p>
+        </div>
+        <div class="team-card reveal">
+          <div class="team-avatar">📖</div>
+          <h3>Ananya Kapoor</h3>
+          <div class="team-role">Education & Lifestyle Writer</div>
+          <p>Former teacher and learning researcher. Passionate about lifelong education, self-improvement, and the science of human habit formation.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Values -->
+  <section class="about-section" style="background: var(--surface); padding: var(--sp-xl) 0;">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">What We Stand For</span>
+        <h2 class="section-title">Our Core Values</h2>
+      </div>
+      <div class="about-grid">
+        <div class="about-card reveal" style="--delay:0s">
+          <div class="about-card-icon">🎯</div>
+          <h3>Accuracy First</h3>
+          <p>Every claim is verified. Every statistic is sourced. We correct mistakes publicly and immediately. Truth is non-negotiable.</p>
+        </div>
+        <div class="about-card reveal" style="--delay:0.1s">
+          <div class="about-card-icon">🚫</div>
+          <h3>Zero Clickbait</h3>
+          <p>Our headlines reflect our content. No sensationalism, no manufactured outrage, no misleading previews. Just honest storytelling.</p>
+        </div>
+        <div class="about-card reveal" style="--delay:0.2s">
+          <div class="about-card-icon">🔓</div>
+          <h3>Always Free</h3>
+          <p>Quality information should be accessible to everyone, not locked behind paywalls. NewsVibe will always be free to read.</p>
+        </div>
+        <div class="about-card reveal" style="--delay:0.3s">
+          <div class="about-card-icon">🤝</div>
+          <h3>Reader First</h3>
+          <p>Our editorial decisions are made for our readers, not our advertisers. We disclose all commercial relationships transparently.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="about-section" id="contact" style="padding: var(--sp-xl) 0;">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">Get In Touch</span>
+        <h2 class="section-title">Contact Us</h2>
+        <p class="section-desc">Whether you have a story tip, partnership inquiry, or just want to say hello — we'd love to hear from you.</p>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-info reveal">
+          <h3>How Can We Help?</h3>
+          <p>We read every message we receive and aim to respond within 24–48 business hours.</p>
+
+          <div class="contact-detail">
+            <span>📧</span>
+            <div><strong>Editorial Inquiries</strong><br>hello@newsvibe.com</div>
+          </div>
+          <div class="contact-detail">
+            <span>💼</span>
+            <div><strong>Advertising & Partnerships</strong><br>advertise@newsvibe.com</div>
+          </div>
+          <div class="contact-detail">
+            <span>💡</span>
+            <div><strong>Story Tips</strong><br>tips@newsvibe.com</div>
+          </div>
+          <div class="contact-detail">
+            <span>🐛</span>
+            <div><strong>Technical Issues</strong><br>support@newsvibe.com</div>
+          </div>
+        </div>
+
+        <form class="contact-form reveal" onsubmit="submitContact(event)" aria-label="Contact form">
+          <h3>Send Us a Message</h3>
+          <div class="form-group">
+            <label for="contactName">Full Name</label>
+            <input type="text" id="contactName" placeholder="Your name" required />
+          </div>
+          <div class="form-group">
+            <label for="contactEmail">Email Address</label>
+            <input type="email" id="contactEmail" placeholder="your@email.com" required />
+          </div>
+          <div class="form-group">
+            <label for="contactSubject">Subject</label>
+            <select id="contactSubject">
+              <option value="">Select a subject</option>
+              <option>Story Tip</option>
+              <option>Advertising Inquiry</option>
+              <option>Partnership</option>
+              <option>Editorial Feedback</option>
+              <option>Technical Issue</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="contactMessage">Message</label>
+            <textarea id="contactMessage" rows="5" placeholder="Tell us more…" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" id="contactSubmitBtn">Send Message →</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter -->
+  <section class="newsletter-section">
+    <div class="container">
+      <div class="newsletter-card reveal">
+        <div class="nl-glow"></div>
+        <div class="nl-content">
+          <span class="section-tag">Stay Connected</span>
+          <h2>Join the NewsVibe Community</h2>
+          <p>Get our best articles delivered to your inbox every week — free, forever.</p>
+          <form class="nl-form" onsubmit="handleSubscribe(event)">
+            <input type="email" id="nlEmail" placeholder="Your email address" required />
+            <button type="submit" class="btn btn-primary">Subscribe Free →</button>
+          </form>
+          <p class="nl-note">✅ Free forever · No spam · Unsubscribe anytime</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="index.html" class="nav-logo"><span class="logo-icon">⚡</span><span class="logo-text">NewsVibe</span></a>
+          <p>Curating the most important stories every week.</p>
+        </div>
+        <div class="footer-links-group">
+          <h4>Navigate</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="category.html">Topics</a></li>
+            <li><a href="about.html">About</a></li>
+          </ul>
+        </div>
+        <div class="footer-links-group">
+          <h4>Topics</h4>
+          <ul>
+            <li><a href="category.html?cat=Health">Health</a></li>
+            <li><a href="category.html?cat=Technology">Technology</a></li>
+            <li><a href="category.html?cat=Finance">Finance</a></li>
+            <li><a href="category.html?cat=Environment">Environment</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 NewsVibe. Made with ❤️ for curious minds.</p>
+        <p class="footer-tagline">Read more, know more, be more.</p>
+      </div>
+    </div>
+  </footer>
+
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
+  <div class="toast" id="toast" role="alert"></div>
+
+  <script>
+    (function () {
+      "use strict";
+      const savedTheme = localStorage.getItem("nv-theme") || "light";
+      document.documentElement.setAttribute("data-theme", savedTheme);
+
+      const themeToggle = document.getElementById("themeToggle");
+      if (themeToggle) {
+        themeToggle.addEventListener("click", () => {
+          const cur = document.documentElement.getAttribute("data-theme");
+          const next = cur === "dark" ? "light" : "dark";
+          document.documentElement.setAttribute("data-theme", next);
+          localStorage.setItem("nv-theme", next);
+        });
+      }
+
+      const navbar = document.getElementById("navbar");
+      const backToTop = document.getElementById("backToTop");
+      const pageProgress = document.getElementById("pageProgress");
+      window.addEventListener("scroll", () => {
+        if (navbar) navbar.classList.toggle("scrolled", window.scrollY > 50);
+        if (backToTop) backToTop.classList.toggle("visible", window.scrollY > 500);
+        if (pageProgress) {
+          const t = document.documentElement.scrollHeight - window.innerHeight;
+          pageProgress.style.width = (t > 0 ? (window.scrollY / t) * 100 : 0) + "%";
+        }
+      }, { passive: true });
+
+      if (backToTop) backToTop.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+
+      const hamburger = document.getElementById("hamburger");
+      const navLinks = document.getElementById("navLinks");
+      if (hamburger && navLinks) {
+        hamburger.addEventListener("click", () => navLinks.classList.toggle("open"));
+      }
+
+      const toast = document.getElementById("toast");
+      function showToast(msg) {
+        if (!toast) return;
+        toast.textContent = msg;
+        toast.classList.add("show");
+        setTimeout(() => toast.classList.remove("show"), 3500);
+      }
+
+      window.handleSubscribe = function (e) {
+        e.preventDefault();
+        const el = document.getElementById("nlEmail");
+        if (el) el.value = "";
+        showToast("🎉 You're now subscribed to NewsVibe!");
+      };
+
+      window.submitContact = function (e) {
+        e.preventDefault();
+        const btn = document.getElementById("contactSubmitBtn");
+        if (btn) { btn.textContent = "Sending…"; btn.disabled = true; }
+        setTimeout(() => {
+          document.getElementById("contactName").value = "";
+          document.getElementById("contactEmail").value = "";
+          document.getElementById("contactMessage").value = "";
+          if (btn) { btn.textContent = "Send Message →"; btn.disabled = false; }
+          showToast("✅ Message sent! We'll get back to you within 48 hours.");
+        }, 1200);
+      };
+
+      const revealObs = new IntersectionObserver((entries) => {
+        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add("visible"); revealObs.unobserve(e.target); } });
+      }, { threshold: 0.1 });
+      document.querySelectorAll(".reveal").forEach(el => revealObs.observe(el));
+
+    })();
+  </script>
+</body>
+</html>
