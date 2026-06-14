@@ -52,6 +52,7 @@
   <!-- Google AdSense -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1215666516680307"
      crossorigin="anonymous"></script>
+  <script src="ads.js" defer></script>
 
   <link rel="stylesheet" href="style.css" />
 </head>
@@ -93,9 +94,10 @@
   </nav>
 
   <!-- ===== AD BANNER (Header – 728x90) ===== -->
-  <div class="ad-banner ad-leaderboard" id="adLeaderboard" aria-label="Advertisement">
+  <div class="ad-slot ad-leaderboard" id="adLeaderboard" aria-label="Advertisement" data-ad-placement="home-leaderboard">
     <span class="ad-label">Advertisement</span>
-    <div class="ad-placeholder">
+    <div class="ad-slot-frame"></div>
+    <div class="ad-placeholder" hidden>
       <!-- Google AdSense: Replace with your ad code -->
       <!-- <ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-XXXXXXXX" data-ad-slot="XXXXXXXX"></ins> -->
       <div class="ad-demo-content">
@@ -190,9 +192,10 @@
   </section>
 
   <!-- ===== AD RECTANGLE (Mid-Page) ===== -->
-  <div class="ad-banner ad-rectangle" aria-label="Advertisement">
-    <span class="ad-label">Sponsored</span>
-    <div class="ad-placeholder ad-mid">
+  <div class="ad-slot ad-rectangle" aria-label="Advertisement" data-ad-placement="home-mid-content">
+    <span class="ad-label">Advertisement</span>
+    <div class="ad-slot-frame ad-mid"></div>
+    <div class="ad-placeholder ad-mid" hidden>
       <div class="ad-demo-content">
         <span>📱 Advertise With NewsVibe</span>
         <small>Premium placements, engaged readers, real results</small>
@@ -345,7 +348,7 @@
   <button class="back-to-top" id="backToTop" aria-label="Back to top" title="Back to top">↑</button>
 
   <!-- ===== MOBILE STICKY AD ===== -->
-  <div class="ad-sticky-mobile" id="adStickyMobile" aria-label="Advertisement">
+  <div class="ad-sticky-mobile" id="adStickyMobile" aria-label="Advertisement" hidden>
     <button class="ad-close" id="adStickyClose" aria-label="Close ad">✕</button>
     <div class="ad-demo-content">
       <span>📢 Advertise Here</span>
